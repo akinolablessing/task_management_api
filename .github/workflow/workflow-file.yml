@@ -15,13 +15,11 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_DATABASE: task_db
-          MYSQL_USER: 'root'
-          MYSQL_PASSWORD: 'Ayodeji@312'
-          MYSQL_ROOT_PASSWORD: root_pass
+          MYSQL_ROOT_PASSWORD: "Ayodeji@312"
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h localhost -u$$root -p$$Ayodeji@312"
+          --health-cmd="mysqladmin ping -h localhost -uroot -p\"Ayodeji@312\""
           --health-interval=10s
           --health-timeout=5s
           --health-retries=10
@@ -43,7 +41,7 @@ jobs:
 
     - name: Wait for MySQL
       run: |
-        until mysqladmin ping -hmysql -utask_user -ptask_pass --silent; do
+        until mysqladmin ping -hmysql -uroot -p"Ayodeji@312" --silent; do
           echo "Waiting for MySQL..."
           sleep 3
         done
@@ -52,8 +50,8 @@ jobs:
       env:
         DB_ENGINE: django.db.backends.mysql
         DB_NAME: task_db
-        DB_USER: 'root'
-        DB_PASSWORD: 'Ayodeji@312'
+        DB_USER: root
+        DB_PASSWORD: "Ayodeji@312"
         DB_HOST: mysql
         DB_PORT: 3306
         DJANGO_SETTINGS_MODULE: config.settings
@@ -69,8 +67,8 @@ jobs:
       env:
         DB_ENGINE: django.db.backends.mysql
         DB_NAME: task_db
-        DB_USER: 'root'
-        DB_PASSWORD: 'Ayodeji@312'
+        DB_USER: root
+        DB_PASSWORD: "Ayodeji@312"
         DB_HOST: mysql
         DB_PORT: 3306
         DJANGO_SETTINGS_MODULE: config.settings
