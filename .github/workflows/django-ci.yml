@@ -57,15 +57,19 @@ jobs:
           DB_PORT: 3306
           DJANGO_SETTINGS_MODULE: config.settings
           DJANGO_SECRET_KEY: dummy
-        run: |
-          python manage.py migrate
+        run: python manage.py migrate
 
       - name: Run linting
-        run: |
-          flake8 .
+        run: flake8 .
 
       - name: Run tests
         env:
           DB_ENGINE: django.db.backends.mysql
           DB_NAME: task_db
-          DB_USER: r_
+          DB_USER: root
+          DB_PASSWORD: Ayodeji@312
+          DB_HOST: mysql
+          DB_PORT: 3306
+          DJANGO_SETTINGS_MODULE: config.settings
+          DJANGO_SECRET_KEY: dummy
+        run: pytest
